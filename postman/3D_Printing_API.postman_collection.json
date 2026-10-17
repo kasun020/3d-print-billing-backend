@@ -1,0 +1,122 @@
+{
+  "info": {
+    "name": "3D Printing Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Test Server",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": [""]
+        }
+      }
+    },
+    {
+      "name": "2. Admin Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Kasun\",\n    \"email\": \"kasun@gmail.com\",\n    \"password\": \"Kasun@123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/admin/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "admin", "register"]
+        }
+      }
+    },
+    {
+      "name": "3. Admin Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"kasun@gmail.com\",\n    \"password\": \"Kasun@123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/admin/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "admin", "login"]
+        }
+      }
+    },
+    {
+      "name": "4. Create Customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Kamal Perera\",\n    \"phone\": \"0712345678\",\n    \"email\": \"kamal@gmail.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/customers",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "customers"]
+        }
+      }
+    },
+    {
+      "name": "5. Create Print Job",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"fileName\": \"Batman_Bust.stl\",\n    \"material\": \"PLA\",\n    \"weightInGrams\": 150,\n    \"printTimeHours\": 5,\n    \"materialRatePerGram\": 20,\n    \"timeRatePerHour\": 150\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/print-jobs",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "print-jobs"]
+        }
+      }
+    },
+    {
+      "name": "6. Generate Invoice",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"customerId\": \"REPLACE_WITH_CUSTOMER_ID\",\n    \"printJobIds\": [\n        \"REPLACE_WITH_PRINTJOB_ID\"\n    ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/invoices",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "invoices"]
+        }
+      }
+    }
+  ]
+}
