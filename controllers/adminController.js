@@ -1,4 +1,7 @@
 const Admin = require('../models/Admin');
+const PrintJob = require('../models/PrintJob');
+const Customer = require('../models/Customer');
+const Invoice = require('../models/Invoice');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -55,4 +58,27 @@ const loginAdmin = async (req, res) => {
     }
 };
 
-module.exports = { registerAdmin, loginAdmin };
+// 3. ව්‍යාපාර දත්ත සියල්ල මකා දැමීම — Admin accounts ආරක්ෂිතව තබා ගනී
+// DELETE /api/admin/clear-data  (Protected — JWT required)
+const clearAllData = async (req, res) => {
+    try {
+        const [printJobsResult, customersResult, invoicesResult] = await Promise.all([
+            PrintJob.deleteMany({}),
+            Customer.deleteMany({}),
+            Invoice.deleteMany({}),
+        ]);
+
+        res.status(200).json({
+            message: 'All business data cleared successfully. Admin accounts are untouched.',
+            deleted: {
+                printJobs: printJobsResult.deletedCount,
+                customers: customersResult.deletedCount,
+                invoices: invoicesResult.deletedCount,
+            },
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { registerAdmin, loginAdmin, clearAllData };
