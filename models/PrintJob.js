@@ -4,11 +4,9 @@ const printJobSchema = new mongoose.Schema({
     fileName: { type: String, required: true },
     customer: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer', default: null },
     material: { type: String, required: true },
-    weightInGrams: { type: Number, required: true },
-    materialRatePerGram: { type: Number, default: 0 },
-    printTimeHours: { type: Number, required: true },
-    timeRatePerHour: { type: Number, default: 0 },
-    cost: { type: Number, required: true },
+    printingCost: { type: Number, required: true, default: 0 },
+    designCost:   { type: Number, required: true, default: 0 },
+    cost:         { type: Number, required: true },   // always = printingCost + designCost
     status: { 
         type: String, 
         default: 'Pending', 
